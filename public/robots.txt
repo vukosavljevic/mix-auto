@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /coolpanel97-xyz
+
+# Sitemap
+Sitemap: https://mix-auto.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+

@@ -18,9 +18,13 @@ import { useRoute } from 'vue-router'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import { useCars } from './composables/useCars'
+import { useSEO } from './composables/useSEO'
 
 const route = useRoute()
-const isAdminRoute = computed(() => route.path === '/admin')
+const isAdminRoute = computed(() => route.path === '/admin' || route.path === '/coolpanel97-xyz')
+
+// Initialize SEO
+useSEO()
 
 // Učitaj automobile kada se aplikacija učita
 const { loadCars } = useCars()

@@ -3,7 +3,7 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-background">
-        <img src="/hero.jpg" alt="Luxury Car" />
+        <img src="/hero.jpg" alt="MIX AUTO - Prodaja i kupnja polovnih automobila u Osijeku, Hrvatska" />
         <div class="hero-overlay"></div>
       </div>
       <div class="hero-wrapper">
@@ -97,7 +97,7 @@
         <div class="luxury-wrapper">
           <div class="luxury-images">
             <div class="luxury-image-main">
-              <img :src="selectedLuxuryImage" alt="Luxury Car" />
+              <img :src="selectedLuxuryImage" alt="Kvalitetni polovni automobili - MIX AUTO Osijek" />
             </div>
           </div>
           <div class="luxury-content">

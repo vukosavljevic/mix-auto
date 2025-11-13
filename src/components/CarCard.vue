@@ -1,7 +1,7 @@
 <template>
   <div class="car-card" @click="goToDetails">
     <div class="car-image">
-      <img :src="car.image" :alt="car.name" />
+      <img :src="car.image" :alt="`${car.name} ${car.year} - ${car.type} - ${car.price.toLocaleString()} € - MIX AUTO`" loading="lazy" />
       <div v-if="car.status === 'sale'" class="badge sale-badge">SALE</div>
       <div v-else class="badge rent-badge">RENT</div>
       <div class="car-price">

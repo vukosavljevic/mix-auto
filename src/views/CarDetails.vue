@@ -14,7 +14,7 @@
           <div class="main-content">
             <!-- Car Image -->
             <div class="car-main-image">
-              <img :src="car.image" :alt="car.name" />
+              <img :src="car.image" :alt="`${car.name} ${car.year} - ${car.type} - ${car.price.toLocaleString()} € - MIX AUTO Osijek`" />
               <div v-if="car.status === 'sale'" class="badge sale-badge">Prodaja</div>
               <div v-else class="badge rent-badge">Najam</div>
             </div>
