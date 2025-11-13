@@ -3,26 +3,25 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-background">
-        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&h=1080&fit=crop&q=80" alt="Luxury Car" />
+        <img src="/hero.jpg" alt="Luxury Car" />
         <div class="hero-overlay"></div>
       </div>
       <div class="hero-wrapper">
         <div class="hero-text-small animate-fade-in">
-          Adipiscing elit, sed do eiusmod<br>
-          tempor incididunt ut labore enim<br>
-          veniam et dolore magna aliqua.
+          Prodaja i kupnja automobila.<br>
+          Posredovanje u prodaji automobila.<br>
+          Uvoz automobila iz Njemačke po narudžbi.<br>
+          Otkup automobila. Obratite nam se s povjerenjem!
         </div>
         <div class="hero-content">
-          <h1 class="hero-title animate-fade-in-delay">
-            <span class="hero-line hero-primary">Rent a car</span>
-            <span class="hero-line hero-secondary">and enjoy</span>
-            <span class="hero-line hero-secondary">the trip</span>
+          <h1 class="hero-title">
+            <span class="hero-line hero-primary animate-slide-in-right" style="animation-delay: 0.2s;">Kvalitetni</span>
+            <span class="hero-line hero-secondary animate-slide-in-up" style="animation-delay: 0.4s;">polovni</span>
+            <span class="hero-line hero-secondary animate-slide-in-up" style="animation-delay: 0.6s;">automobili</span>
           </h1>
-        </div>
-        <div class="scroll-indicator">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M12 5v14M19 12l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <div class="hero-arrow" @click="scrollToNext">
+            <img src="/bottom.svg" alt="Scroll down" />
+          </div>
         </div>
       </div>
     </section>
@@ -31,8 +30,8 @@
     <section class="recent-cars">
       <div class="container">
         <div class="section-header">
-          <h2>Recent cars</h2>
-          <p>Curabitur tellus leo, euismod sit amet gravida at, egestas sed.</p>
+          <h2>Najnoviji <span class="highlight">automobili</span></h2>
+          <p>Pregledajte našu ponudu kvalitetnih polovnih automobila po najboljim cijenama.</p>
         </div>
         <div class="cars-grid">
           <CarCard
@@ -43,7 +42,51 @@
           />
         </div>
         <div class="load-more">
-          <router-link to="/cars" class="btn-secondary">Load More</router-link>
+          <router-link to="/cars" class="btn-secondary">Pogledaj sve automobile</router-link>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand Logos Slider -->
+    <section class="brands-slider">
+      <div class="slider-wrapper">
+        <div class="slider-track">
+          <div class="logo-slide">
+            <img src="/audi-logo-21.png" alt="Audi" />
+          </div>
+          <div class="logo-slide">
+            <img src="/hyundai.png" alt="Hyundai" />
+          </div>
+          <div class="logo-slide">
+            <img src="/nissan.png" alt="Nissan" />
+          </div>
+          <div class="logo-slide">
+            <img src="/skoda.png" alt="Skoda" />
+          </div>
+          <div class="logo-slide">
+            <img src="/audi-logo-21.png" alt="Audi" />
+          </div>
+          <div class="logo-slide">
+            <img src="/hyundai.png" alt="Hyundai" />
+          </div>
+          <div class="logo-slide">
+            <img src="/nissan.png" alt="Nissan" />
+          </div>
+          <div class="logo-slide">
+            <img src="/skoda.png" alt="Skoda" />
+          </div>
+          <div class="logo-slide">
+            <img src="/audi-logo-21.png" alt="Audi" />
+          </div>
+          <div class="logo-slide">
+            <img src="/hyundai.png" alt="Hyundai" />
+          </div>
+          <div class="logo-slide">
+            <img src="/nissan.png" alt="Nissan" />
+          </div>
+          <div class="logo-slide">
+            <img src="/skoda.png" alt="Skoda" />  
+          </div>
         </div>
       </div>
     </section>
@@ -52,50 +95,17 @@
     <section class="luxury-section">
       <div class="container">
         <div class="luxury-wrapper">
-          <div class="luxury-image">
-            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=900&fit=crop&q=80" alt="Luxury Car Interior" />
-            <div class="luxury-badge">
-              <div class="badge-content">
-                <span class="badge-number">500+</span>
-                <span class="badge-text">Premium Cars</span>
-              </div>
+          <div class="luxury-images">
+            <div class="luxury-image-main">
+              <img :src="selectedLuxuryImage" alt="Luxury Car" />
             </div>
           </div>
           <div class="luxury-content">
-            <h2>Luxuriate in your drive, savor every journey</h2>
+            <h2>Vaš pouzdani partner za kupnju i prodaju automobila</h2>
             <p>
-              Sed ut perspiciatis unde omnis iste natus ut perspic iatis unde omnis iste
-              perspiciatis ut perspiciatis unde omnis iste natus.
+              Specijalizirani smo za prodaju i kupnju kvalitetnih polovnih automobila, posredovanje u prodaji, 
+              uvoz vozila iz Njemačke po narudžbi te otkup automobila. S nama ste u sigurnim rukama!
             </p>
-            <div class="partners">
-              <h4>Check our top clients & partners</h4>
-              <div class="partner-logos">
-                <div class="partner-logo">
-                  <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
-                    <rect width="60" height="40" fill="#f5f5f5"/>
-                    <text x="30" y="24" text-anchor="middle" font-size="12" fill="#999">BMW</text>
-                  </svg>
-                </div>
-                <div class="partner-logo">
-                  <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
-                    <rect width="60" height="40" fill="#f5f5f5"/>
-                    <text x="30" y="24" text-anchor="middle" font-size="12" fill="#999">Audi</text>
-                  </svg>
-                </div>
-                <div class="partner-logo">
-                  <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
-                    <rect width="60" height="40" fill="#f5f5f5"/>
-                    <text x="30" y="24" text-anchor="middle" font-size="12" fill="#999">Porsche</text>
-                  </svg>
-                </div>
-                <div class="partner-logo">
-                  <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
-                    <rect width="60" height="40" fill="#f5f5f5"/>
-                    <text x="30" y="24" text-anchor="middle" font-size="12" fill="#999">Ferrari</text>
-                  </svg>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -105,110 +115,202 @@
     <section class="testimonials">
       <div class="container">
         <div class="section-header">
-          <h2>What clients Say</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit vitae porta.</p>
+          <h2>Što kažu naši <span class="highlight">klijenti</span></h2>
+          <p>Pročitajte iskustva naših zadovoljnih kupaca koji su nam ukazali povjerenje.</p>
         </div>
-        <div class="testimonials-grid">
-          <div
-            v-for="testimonial in testimonials"
-            :key="testimonial.id"
-            class="testimonial-card"
-          >
-            <p class="testimonial-text">{{ testimonial.text }}</p>
-            <div class="testimonial-author">
-              <img :src="testimonial.avatar" :alt="testimonial.name" />
-              <div>
-                <h4>{{ testimonial.name }}</h4>
-                <p>{{ testimonial.location }}</p>
+        <div class="testimonials-carousel-wrapper" @mouseenter="stopAutoPlay" @mouseleave="startAutoPlay">
+          <div class="testimonials-slider" ref="slider">
+            <div class="testimonials-grid" :style="sliderStyle">
+              <div
+                v-for="(testimonial, index) in displayTestimonials"
+                :key="`testimonial-${index}`"
+                class="testimonial-item"
+                :class="{ 'center-item': isCenterItem(index) }"
+              >
+                <div :class="['testimonial-card', { 'highlighted': isCenterItem(index) }]">
+                  <div class="quote-icon">
+                    <svg width="40" height="32" viewBox="0 0 40 32" fill="currentColor">
+                      <path d="M0 16c0-8.837 7.163-16 16-16v8c-4.418 0-8 3.582-8 8h8v16H0V16zm24 0c0-8.837 7.163-16 16-16v8c-4.418 0-8 3.582-8 8h8v16H24V16z"/>
+                    </svg>
+                  </div>
+                  <p class="testimonial-text">{{ testimonial.text }}</p>
+                </div>
+                <div class="testimonial-author">
+                  <div class="author-avatar" v-if="!testimonial.avatar">
+                    <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <circle cx="12" cy="7" r="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <img v-else :src="testimonial.avatar" :alt="testimonial.name" />
+                  <div class="author-info">
+                    <h4>{{ testimonial.name }}</h4>
+                    <p>{{ testimonial.location }}</p>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-btn prev-btn" @click="prevSlide" aria-label="Previous">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <div class="carousel-dots">
+              <button
+                v-for="(testimonial, index) in testimonials"
+                :key="`dot-${index}`"
+                :class="['dot', { 'active': index === currentIndex }]"
+                @click="goToSlide(index)"
+                :aria-label="`Go to testimonial ${index + 1}`"
+              ></button>
+            </div>
+            <button class="carousel-btn next-btn" @click="nextSlide" aria-label="Next">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Process -->
-    <section class="process">
-      <div class="container">
-        <div class="section-header">
-          <h2>Simplified car rental process</h2>
-          <p>
-            Sed ut perspiciatis unde omnis iste natus ut perspic iatis unde omnis iste
-            perspiciatis ut perspiciatis unde omnis iste natus.
-          </p>
-        </div>
-        <div class="process-grid">
-          <div class="process-step">
-            <div class="step-number">01</div>
-            <h3>Vehicle selection</h3>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus ut perspic iatis unde omnis iste
-              perspiciatis ut perspiciatis unde.
-            </p>
-          </div>
-          <div class="process-step">
-            <div class="step-number">02</div>
-            <h3>Insurance services</h3>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus ut perspic iatis unde omnis iste
-              perspiciatis ut perspiciatis unde.
-            </p>
-          </div>
-          <div class="process-step">
-            <div class="step-number">03</div>
-            <h3>Payment</h3>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus ut perspic iatis unde omnis iste
-              perspiciatis ut perspiciatis unde.
-            </p>
-          </div>
-          <div class="process-step">
-            <div class="step-number">04</div>
-            <h3>Happy driving</h3>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus ut perspic iatis unde omnis iste
-              perspiciatis ut perspiciatis unde.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Latest News -->
-    <section class="news">
-      <div class="container">
-        <div class="section-header">
-          <h2>Latest news</h2>
-          <p>Morbi lorem dolor, congue sed ipsum vel, vulputate sollicitudin ante.</p>
-        </div>
-        <div class="news-grid">
-          <div v-for="article in news" :key="article.id" class="news-card">
-            <div class="news-image">
-              <img :src="article.image" :alt="article.title" />
-              <span class="news-category">{{ article.category }}</span>
-            </div>
-            <div class="news-content">
-              <h3>{{ article.title }}</h3>
-              <div class="news-meta">
-                <span>{{ article.date }}</span>
-                <span>{{ article.comments }} Comments</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import CarCard from '../components/CarCard.vue'
-import { cars, testimonials as testimonialsData, news as newsData } from '../data/cars'
+import { useCars } from '../composables/useCars'
+import { testimonials as testimonialsData, news as newsData } from '../data/cars'
 
-const recentCars = ref(cars.slice(0, 6))
+// Koristi shared cars state
+const { cars, recentCars, loadCars } = useCars()
+
 const testimonials = ref(testimonialsData)
 const news = ref(newsData)
+
+// Učitaj ako još nisu učitani
+onMounted(async () => {
+  await loadCars()
+})
+
+// Luxury section images
+const luxuryImages = ref([
+  'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&h=800&fit=crop&q=80' // Orange Porsche with model
+])
+const selectedLuxuryImage = ref(luxuryImages.value[0])
+
+// Testimonials Carousel
+const slider = ref(null)
+const currentIndex = ref(0)
+const isTransitioning = ref(true)
+const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1400)
+
+// Create infinite loop by duplicating testimonials
+const displayTestimonials = computed(() => {
+  return [...testimonials.value, ...testimonials.value, ...testimonials.value]
+})
+
+const sliderStyle = computed(() => {
+  let slideWidth
+  
+  if (windowWidth.value <= 1024) {
+    slideWidth = windowWidth.value * 0.9 + 32 // 90vw + gap
+  } else {
+    slideWidth = 400 + 32 // Item width (400px) + gap (32px) = 432px
+  }
+  
+  // We want to show 3 items with the current item in the middle (position 1 of 0,1,2)
+  // So we need to offset by: (currentIndex + testimonials.length - 1) * slideWidth
+  // This will position currentIndex in the middle of the visible area
+  const offset = (currentIndex.value + testimonials.value.length - 1) * slideWidth
+  
+  return {
+    transform: `translateX(-${offset}px)`,
+    transition: isTransitioning.value ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
+  }
+})
+
+const isCenterItem = (index) => {
+  const centerIndex = currentIndex.value + testimonials.value.length
+  return index === centerIndex
+}
+
+const nextSlide = () => {
+  isTransitioning.value = true
+  currentIndex.value++
+  
+  if (currentIndex.value >= testimonials.value.length) {
+    setTimeout(() => {
+      isTransitioning.value = false
+      currentIndex.value = 0
+      setTimeout(() => {
+        isTransitioning.value = true
+      }, 50)
+    }, 500)
+  }
+}
+
+const prevSlide = () => {
+  isTransitioning.value = true
+  currentIndex.value--
+  
+  if (currentIndex.value < 0) {
+    setTimeout(() => {
+      isTransitioning.value = false
+      currentIndex.value = testimonials.value.length - 1
+      setTimeout(() => {
+        isTransitioning.value = true
+      }, 50)
+    }, 500)
+  }
+}
+
+const goToSlide = (index) => {
+  isTransitioning.value = true
+  currentIndex.value = index
+}
+
+// Auto-play
+let autoPlayInterval = null
+
+const startAutoPlay = () => {
+  stopAutoPlay() // Clear any existing interval
+  autoPlayInterval = setInterval(() => {
+    nextSlide()
+  }, 5000)
+}
+
+const stopAutoPlay = () => {
+  if (autoPlayInterval) {
+    clearInterval(autoPlayInterval)
+    autoPlayInterval = null
+  }
+}
+
+const handleResize = () => {
+  windowWidth.value = window.innerWidth
+}
+
+const scrollToNext = () => {
+  const nextSection = document.querySelector('.recent-cars')
+  if (nextSection) {
+    nextSection.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
+onMounted(() => {
+  startAutoPlay()
+  window.addEventListener('resize', handleResize)
+})
+
+onUnmounted(() => {
+  stopAutoPlay()
+  window.removeEventListener('resize', handleResize)
+})
 </script>
 
 <style scoped>
@@ -245,7 +347,8 @@ const news = ref(newsData)
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center left;
+  filter: brightness(0.85) contrast(1.1);
 }
 
 .hero-overlay {
@@ -254,8 +357,36 @@ const news = ref(newsData)
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(26, 26, 26, 0.75) 0%, rgba(26, 26, 26, 0.45) 50%, rgba(26, 26, 26, 0.7) 100%);
+  background: 
+    radial-gradient(ellipse at 70% 40%, rgba(255, 193, 7, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 70%, rgba(255, 193, 7, 0.08) 0%, transparent 40%),
+    linear-gradient(90deg, rgba(15, 15, 15, 0.5) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.95) 100%);
   z-index: 1;
+}
+
+.hero-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 40% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+    radial-gradient(circle at 60% 70%, rgba(255, 255, 255, 0.025) 0%, transparent 18%),
+    radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.15) 0%, transparent 30%),
+    radial-gradient(circle at 20% 80%, rgba(255, 193, 7, 0.1) 0%, transparent 35%);
+  animation: shimmer 8s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }
 
 .hero-wrapper {
@@ -265,27 +396,27 @@ const news = ref(newsData)
   max-width: 1600px;
   padding: 0 4rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: flex-end;
   justify-content: space-between;
   min-height: 85vh;
 }
 
 .hero-text-small {
-  position: absolute;
-  bottom: 8rem;
-  left: 4rem;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  font-weight: 300;
-  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.75rem;
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  max-width: 300px;
+  padding-bottom: 2rem;
 }
 
 .hero-content {
-  flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-bottom: 2rem;
   padding-right: 2rem;
 }
 
@@ -301,43 +432,57 @@ const news = ref(newsData)
 .hero-line {
   display: block;
   font-weight: 700;
-  letter-spacing: -2px;
-  line-height: 0.95;
-  margin-bottom: 0.1em;
+  letter-spacing: -3px;
+  line-height: 0.9;
+  margin-bottom: 0;
 }
 
 .hero-primary {
-  font-size: clamp(4rem, 12vw, 9rem);
-  color: #ff6347;
-  text-shadow: 0 4px 30px rgba(255, 99, 71, 0.5);
+  font-size: clamp(4.5rem, 13vw, 10rem);
+  color: #FFB800;
+  font-weight: 700;
 }
 
 .hero-secondary {
-  font-size: clamp(3.5rem, 10vw, 8rem);
+  font-size: clamp(4rem, 12vw, 9rem);
   color: white;
   text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
 }
 
-.scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba(255, 255, 255, 0.7);
-  animation: bounce 2s infinite;
+.hero-arrow {
+  margin-top: 3rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: 
+    fadeIn 0.6s ease-out 0.9s both,
+    bounceArrow 2s ease-in-out 1.5s infinite;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateX(-50%) translateY(0);
+.hero-arrow:hover {
+  opacity: 1;
+}
+
+.hero-arrow img {
+  width: 52px;
+  height: 52px;
+  filter: brightness(0) invert(1);
+}
+
+@keyframes bounceArrow {
+  0%, 100% {
+    transform: translateY(0);
   }
-  40% {
-    transform: translateX(-50%) translateY(-10px);
-  }
-  60% {
-    transform: translateX(-50%) translateY(-5px);
+  50% {
+    transform: translateY(8px);
   }
 }
+
 
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out;
@@ -347,10 +492,40 @@ const news = ref(newsData)
   animation: fadeIn 0.8s ease-out 0.3s both;
 }
 
+.animate-slide-in-right {
+  animation: slideInRight 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
   }
   to {
     opacity: 1;
@@ -372,6 +547,10 @@ const news = ref(newsData)
   letter-spacing: -0.5px;
 }
 
+.section-header h2 .highlight {
+  color: #ffc107;
+}
+
 .section-header p {
   font-size: 1.15rem;
   color: #666;
@@ -383,7 +562,32 @@ const news = ref(newsData)
 /* Recent Cars */
 .recent-cars {
   padding: 7rem 0;
-  background: linear-gradient(to bottom, #0f0f0f 0%, #1a1a1a 100%);
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(255, 193, 7, 0.05) 0%, transparent 50%),
+    linear-gradient(to bottom, #0f0f0f 0%, #1a1a1a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.recent-cars::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 15%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.015) 0%, transparent 20%),
+    radial-gradient(circle, rgba(255, 193, 7, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.recent-cars .container {
+  padding: 0 6rem;
+  position: relative;
+  z-index: 1;
 }
 
 .recent-cars .section-header h2 {
@@ -396,9 +600,32 @@ const news = ref(newsData)
 
 .cars-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
   margin-bottom: 4rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1200px) {
+  .recent-cars .container {
+    padding: 0 4rem;
+  }
+  
+  .cars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .recent-cars .container {
+    padding: 0 2rem;
+  }
+  
+  .cars-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .car-item {
@@ -425,7 +652,7 @@ const news = ref(newsData)
   padding: 1.2rem 3.5rem;
   background: transparent;
   color: #fff;
-  border: 2px solid #ff6347;
+  border: 2px solid #ffc107;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
@@ -442,7 +669,7 @@ const news = ref(newsData)
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #ff6347 0%, #ff4500 100%);
+  background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
   transition: left 0.4s ease;
   z-index: -1;
 }
@@ -452,51 +679,78 @@ const news = ref(newsData)
 }
 
 .btn-secondary:hover {
-  color: white;
-  border-color: #ff6347;
+  color: #1a1a1a;
+  border-color: #ffc107;
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(255, 99, 71, 0.6);
+  box-shadow: 0 8px 25px rgba(255, 193, 7, 0.6);
 }
 
 /* Luxury Section */
 .luxury-section {
-  background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+  background: 
+    radial-gradient(ellipse at 50% 50%, rgba(255, 193, 7, 0.05) 0%, transparent 60%),
+    linear-gradient(to bottom, #1a1a1a 0%, #0f0f0f 100%);
   padding: 8rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 15% 60%, rgba(255, 255, 255, 0.025) 0%, transparent 25%),
+    radial-gradient(circle at 85% 40%, rgba(255, 255, 255, 0.02) 0%, transparent 18%),
+    radial-gradient(circle at 30% 70%, rgba(255, 193, 7, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 70% 30%, rgba(255, 193, 7, 0.02) 0%, transparent 35%);
+  animation: shimmerSlow 10s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
 .luxury-wrapper {
   display: grid;
-  grid-template-columns: 45% 1fr;
-  gap: 6rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
-.luxury-image {
-  position: relative;
+.luxury-content {
+  padding-left: 2rem;
+}
+
+.luxury-images {
+  width: 100%;
+}
+
+.luxury-image-main {
+  width: 100%;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-}
-
-.luxury-image img {
-  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   height: 600px;
-  object-fit: cover;
-  transition: transform 0.5s ease;
 }
 
-.luxury-image:hover img {
-  transform: scale(1.05);
+.luxury-image-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s ease;
 }
 
 .luxury-badge {
   position: absolute;
   bottom: 2rem;
   right: 2rem;
-  background: linear-gradient(135deg, #e63946 0%, #d62839 100%);
+  background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(230, 57, 70, 0.4);
+  box-shadow: 0 10px 30px rgba(255, 193, 7, 0.5);
   text-align: center;
   min-width: 140px;
 }
@@ -505,7 +759,7 @@ const news = ref(newsData)
   display: block;
   font-size: 2.5rem;
   font-weight: 700;
-  color: white;
+  color: #1a1a1a;
   line-height: 1;
   margin-bottom: 0.5rem;
 }
@@ -513,12 +767,8 @@ const news = ref(newsData)
 .badge-text {
   display: block;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 500;
-}
-
-.luxury-content {
-  padding-right: 2rem;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 600;
 }
 
 .luxury-content h2 {
@@ -533,121 +783,318 @@ const news = ref(newsData)
   color: rgba(255, 255, 255, 0.75);
   line-height: 1.8;
   margin-bottom: 3rem;
-}
-
-.partners h4 {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 2rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.partner-logos {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.partner-logo {
-  transition: transform 0.3s ease;
-}
-
-.partner-logo:hover {
-  transform: translateY(-5px);
-}
+} 
 
 /* Testimonials */
 .testimonials {
-  padding: 6rem 0;
-  background: linear-gradient(to bottom, #252525 0%, #1a1a1a 100%);
+  padding: 4rem 0;
+  position: relative;
 }
 
 .testimonials .section-header h2 {
   color: #fff;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.testimonials .section-header .highlight {
+  color: #FF5722;
 }
 
 .testimonials .section-header p {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.testimonials-carousel-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 2rem;
+}
+
+.testimonials-slider {
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
 }
 
 .testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2.5rem;
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+}
+
+.testimonial-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  min-width: 400px;
+  max-width: 400px;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.testimonial-item.center-item {
+  opacity: 1;
+}
+
+.testimonial-item.center-item .testimonial-card {
+  transform: scale(1.05);
 }
 
 .testimonial-card {
-  background: linear-gradient(135deg, #2d2d2d 0%, #1f1f1f 100%);
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
-  transition: all 0.4s ease;
-  border-top: 3px solid transparent;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #252525;
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-bottom: 3rem;
 }
 
-.testimonial-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 50px rgba(255, 99, 71, 0.2);
-  border-top-color: #ff6347;
-  border-color: rgba(255, 99, 71, 0.2);
+.testimonial-card::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #252525;
+}
+
+.testimonial-card.highlighted {
+  background: linear-gradient(135deg, #FF5722 0%, #F4511E 100%);
+}
+
+.testimonial-card.highlighted::after {
+  border-top-color: #F4511E;
+}
+
+.quote-icon {
+  color: #FF5722;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.testimonial-card.highlighted .quote-icon {
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .testimonial-text {
   font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.9;
-  margin-bottom: 2rem;
-  font-style: italic;
-  position: relative;
-  padding-left: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.8;
+  margin: 0;
+  font-weight: 400;
 }
 
-.testimonial-text::before {
-  content: '"';
-  position: absolute;
-  left: 0;
-  top: -10px;
-  font-size: 3rem;
-  color: #ff6347;
-  opacity: 0.4;
-  font-family: Georgia, serif;
+.testimonial-card.highlighted .testimonial-text {
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .testimonial-author {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .testimonial-author img {
-  width: 60px;
-  height: 60px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(255, 99, 71, 0.3);
+  border: 4px solid #2a2a2a;
+  margin-bottom: 1rem;
 }
 
-.testimonial-author h4 {
-  font-size: 1.1rem;
+.author-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 4px solid #2a2a2a;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.author-avatar svg {
+  width: 50px;
+  height: 50px;
+}
+
+.author-info h4 {
+  font-size: 1.2rem;
   color: #fff;
   margin: 0 0 0.3rem 0;
   font-weight: 600;
 }
 
-.testimonial-author p {
-  font-size: 0.9rem;
+.author-info p {
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.5);
   margin: 0;
 }
 
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.carousel-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #252525;
+  border: 2px solid rgba(255, 87, 34, 0.3);
+  color: #FF5722;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover {
+  background: linear-gradient(135deg, #FF5722 0%, #F4511E 100%);
+  border-color: #FF5722;
+  color: white;
+  transform: scale(1.1);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.dot:hover {
+  background: rgba(255, 87, 34, 0.6);
+  transform: scale(1.2);
+}
+
+.dot.active {
+  background: #FF5722;
+  width: 30px;
+  border-radius: 5px;
+}
+
+@media (max-width: 1024px) {
+  .testimonials-slider {
+    max-width: 100%;
+    padding: 2rem 1rem;
+  }
+
+  .testimonial-item {
+    width: 90vw;
+    opacity: 1;
+  }
+
+  .testimonial-item.center-item .testimonial-card {
+    transform: scale(1);
+  }
+
+  .testimonial-card.highlighted {
+    transform: scale(1);
+  }
+
+  .carousel-controls {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .carousel-dots {
+    order: -1;
+  }
+
+  .prev-btn,
+  .next-btn {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials {
+    padding: 4rem 0;
+  }
+
+  .testimonials .section-header h2 {
+    font-size: 2rem;
+  }
+
+  .testimonial-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.95rem;
+  }
+
+  .testimonial-author img,
+  .author-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .author-avatar svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carousel-btn {
+    width: 45px;
+    height: 45px;
+  }
+}
+
 /* Process */
 .process {
-  background: linear-gradient(to bottom, #1a1a1a 0%, #0f0f0f 100%);
+  background: 
+    radial-gradient(ellipse at 50% 100%, rgba(255, 193, 7, 0.04) 0%, transparent 50%),
+    linear-gradient(to bottom, #1a1a1a 0%, #0f0f0f 100%);
   padding: 6rem 0;
   position: relative;
+  overflow: hidden;
+}
+
+.process::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 50%;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.015) 0%, transparent 20%),
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.02) 0%, transparent 25%),
+    radial-gradient(ellipse, rgba(255, 193, 7, 0.02) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 .process .section-header h2 {
@@ -663,6 +1110,7 @@ const news = ref(newsData)
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 3rem;
   position: relative;
+  z-index: 1;
 }
 
 .process-step {
@@ -685,8 +1133,8 @@ const news = ref(newsData)
 .step-number {
   width: 90px;
   height: 90px;
-  background: linear-gradient(135deg, #ff6347 0%, #ff4500 100%);
-  color: white;
+  background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+  color: #1a1a1a;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -694,7 +1142,7 @@ const news = ref(newsData)
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0 auto 1.5rem;
-  box-shadow: 0 8px 25px rgba(255, 99, 71, 0.6);
+  box-shadow: 0 8px 25px rgba(255, 193, 7, 0.6);
   position: relative;
 }
 
@@ -704,7 +1152,7 @@ const news = ref(newsData)
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 2px solid #ff6347;
+  border: 2px solid #ffc107;
   opacity: 0;
   animation: pulse 2s infinite;
 }
@@ -740,7 +1188,22 @@ const news = ref(newsData)
 /* News */
 .news {
   padding: 6rem 0;
-  background: linear-gradient(to bottom, #0f0f0f 0%, #1a1a1a 100%);
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(255, 193, 7, 0.04) 0%, transparent 50%),
+    linear-gradient(to bottom, #0f0f0f 0%, #1a1a1a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.news::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 40%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(255, 193, 7, 0.02) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .news .section-header h2 {
@@ -755,6 +1218,8 @@ const news = ref(newsData)
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .news-card {
@@ -798,15 +1263,15 @@ const news = ref(newsData)
   position: absolute;
   top: 1.5rem;
   left: 1.5rem;
-  background: linear-gradient(135deg, #ff6347 0%, #ff4500 100%);
-  color: white;
+  background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+  color: #1a1a1a;
   padding: 0.6rem 1.3rem;
   border-radius: 50px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 5px 15px rgba(255, 99, 71, 0.6);
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.6);
 }
 
 .news-content {
@@ -823,7 +1288,7 @@ const news = ref(newsData)
 }
 
 .news-card:hover .news-content h3 {
-  color: #ff6347;
+  color: #ffc107;
 }
 
 .news-meta {
@@ -841,79 +1306,95 @@ const news = ref(newsData)
     gap: 3rem;
   }
 
-  .luxury-image img {
-    height: 400px;
+  .luxury-image-main {
+    height: 500px;
   }
 
   .luxury-content {
-    padding-right: 0;
+    padding-left: 0;
   }
 }
 
-@media (max-width: 1200px) {
-  .hero-wrapper {
-    padding: 0 2rem;
+/* Brand Logos Slider */
+.brands-slider {
+  background: #1a1a1a;
+  padding: 1rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-track {
+  display: flex;
+  gap: 8rem;
+  animation: scroll 30s linear infinite;
+  width: max-content;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-slide {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  min-width: 150px;
+  padding: 10px;
+  filter: grayscale(100%) brightness(0.5);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.logo-slide:hover {
+  filter: grayscale(0%) brightness(1);
+  transform: scale(1.1);
+}
+
+.logo-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .brands-slider {
+    padding: 3rem 0;
   }
 
-  .hero-text-small {
-    left: 2rem;
+  .slider-track {
+    gap: 4rem;
   }
 
-  .hero-content {
-    padding-right: 0;
+  .logo-slide {
+    height: 60px;
+    min-width: 120px;
+    padding: 8px;
+  }
+
+  .logo-slide img {
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 
 @media (max-width: 768px) {
-  .hero {
-    min-height: 100vh;
-  }
-
-  .hero-wrapper {
-    padding: 0 1.5rem;
-    min-height: 90vh;
-  }
-
-  .hero-content {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .hero-title {
-    align-items: center;
-  }
-
-  .hero-primary {
-    font-size: clamp(3rem, 15vw, 5rem);
-  }
-
-  .hero-secondary {
-    font-size: clamp(2.5rem, 12vw, 4rem);
-  }
-
-  .hero-text-small {
-    position: static;
-    margin-top: auto;
-    padding-bottom: 6rem;
-    text-align: center;
-    font-size: 0.85rem;
-  }
-
-  .cars-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .section-header h2 {
-    font-size: 2rem;
-  }
-
-  .luxury-content h2 {
-    font-size: 2rem;
-    color: #fff;
-  }
-
-  .luxury-image img {
-    height: 350px;
+  .luxury-image-main {
+    height: 400px;
   }
 
   .luxury-badge {
@@ -926,9 +1407,80 @@ const news = ref(newsData)
   .badge-number {
     font-size: 2rem;
   }
+}
 
-  .partner-logos {
-    justify-content: center;
+@media (max-width: 1200px) {
+  .hero-wrapper {
+    padding: 0 2rem;
+    gap: 2rem;
+  }
+
+  .hero-content {
+    padding-right: 0;
+  }
+  
+  .hero-primary {
+    font-size: clamp(4rem, 10vw, 8rem);
+  }
+
+  .hero-secondary {
+    font-size: clamp(3.5rem, 9vw, 7rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100vh;
+  }
+
+  .hero-wrapper {
+    padding: 0 1.5rem;
+    min-height: 90vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .hero-content {
+    padding-right: 1.5rem;
+    justify-content: flex-end;
+    text-align: right;
+    order: 1;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    align-items: flex-end;
+  }
+
+  .hero-primary {
+    font-size: clamp(3.5rem, 18vw, 7rem);
+  }
+
+  .hero-secondary {
+    font-size: clamp(3rem, 15vw, 6rem);
+  }
+
+  .hero-text-small {
+    padding-bottom: 2rem;
+    padding-right: 1.5rem;
+    text-align: right;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    order: 2;
+  }
+
+  .hero-arrow {
+    margin-top: 1.5rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+  }
+
+  .luxury-content h2 {
+    font-size: 2rem;
+    color: #fff;
   }
 }
 </style>

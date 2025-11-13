@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <Header />
+    <Header v-if="!isAdminRoute" />
     <main class="main-content">
       <router-view v-slot="{ Component }">
         <transition name="page" mode="out-in">
@@ -8,38 +8,29 @@
         </transition>
       </router-view>
     </main>
-    <Footer /> -->
-
-    <!-- Coming Soon Page -->
-    <div class="coming-soon">
-      <div class="coming-soon-content">
-        <div class="loader">
-          <div class="car-loader">
-            <div class="car-body"></div>
-            <div class="car-wheel wheel-left"></div>
-            <div class="car-wheel wheel-right"></div>
-          </div>
-        </div>
-        <h1 class="coming-soon-title">Dolazimo Uskoro</h1>
-        <h2 class="coming-soon-subtitle">Coming Soon</h2>
-        <p class="coming-soon-text">Radimo na nečemu posebnom...</p>
-        <div class="spinner-dots">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div>
+    <Footer v-if="!isAdminRoute" />
   </div>
 </template>
 
 <script setup>
-// import Header from './components/Header.vue'
-// import Footer from './components/Footer.vue'
+import { computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+import { useCars } from './composables/useCars'
+
+const route = useRoute()
+const isAdminRoute = computed(() => route.path === '/admin')
+
+// Učitaj automobile kada se aplikacija učita
+const { loadCars } = useCars()
+onMounted(async () => {
+  await loadCars()
+})
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
 
 /* Global Styles */
 * {
@@ -49,9 +40,9 @@
 }
 
 :root {
-  --primary-color: #ff6347;
-  --primary-dark: #ff4500;
-  --secondary-color: #2a9d8f;
+  --primary-color: #FFB800;
+  --primary-dark: #FFA500;
+  --secondary-color: #FFCC00;
   --text-color: #1a1a1a;
   --text-light: #666;
   --bg-light: #f8f9fa;
@@ -61,7 +52,7 @@
 }
 
 body {
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;

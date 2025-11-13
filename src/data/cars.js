@@ -45,7 +45,7 @@ export const cars = [
     year: 1966,
     price: 14500,
     status: 'sale',
-    image: 'https://images.unsplash.com/photo-1584345604476-8ec5f5f45851?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop',
     mileage: '20K',
     engine: '1.6 L CFNA',
     fuel: 'Gasoline',
@@ -237,31 +237,31 @@ export const cars = [
 export const testimonials = [
   {
     id: 1,
-    name: 'Samuel Donovan',
-    location: 'Joplin, MO',
-    text: 'Sed ut perspiciatis unde omnis iste natus ut perspic iatis unde omnis iste perspiciatis ut rspiciatis.',
-    avatar: 'https://i.pravatar.cc/150?img=12'
+    name: 'Marko Horvat',
+    location: 'Zagreb',
+    text: 'Odlično iskustvo! Kupio sam auto preko Mix Auto-a i prezadovoljan sam. Tim je bio profesionalan, pomogao mi je s papirima i uvozom iz Njemačke. Preporučujem svima!',
+    avatar: null // Koristit ćemo default user icon
   },
   {
     id: 2,
-    name: 'Victoria Edwards',
-    location: 'Ferndale, CA',
-    text: 'Sed ut perspiciatis unde omnis iste natus ut perspic iatis unde omnis iste perspiciatis ut rspiciatis.',
-    avatar: 'https://i.pravatar.cc/150?img=45'
+    name: 'Ana Marić',
+    location: 'Osijek',
+    text: 'Prodala sam svoj auto preko Mix Auto-a i proces je bio brz i jednostavan. Dobila sam fer ponudu, a sve je bilo riješeno u roku od nekoliko dana. Zahvaljujem na profesionalnosti!',
+    avatar: null
   },
   {
     id: 3,
-    name: 'Jason Hall',
-    location: 'Edison, NJ',
-    text: 'Sed ut perspiciatis unde omnis iste natus ut perspic iatis unde omnis iste perspiciatis ut rspiciatis.',
-    avatar: 'https://i.pravatar.cc/150?img=33'
+    name: 'Ivan Petrović',
+    location: 'Osijek',
+    text: 'Kupio sam auto preko Mix Auto-a i auto je bio u odličnom stanju, točno kao što je opisano. Posredovanje u prodaji je bilo profesionalno i bez problema. Definitivno ću se ponovno obratiti!',
+    avatar: null
   },
   {
     id: 4,
-    name: 'Emily Gonzalez',
-    location: 'Cranston, RI',
-    text: 'Sed ut perspiciatis unde omnis iste natus ut perspic iatis unde omnis iste perspiciatis ut rspiciatis.',
-    avatar: 'https://i.pravatar.cc/150?img=47'
+    name: 'Petra Novak',
+    location: 'Osijek',
+    text: 'Mix Auto je pomogao mojoj obitelji pronaći savršen automobil. Tim je bio strpljiv i odgovorio na sva naša pitanja. Auto je bio u odličnom stanju i po povoljnoj cijeni. Hvala vam!',
+    avatar: null
   }
 ]
 
