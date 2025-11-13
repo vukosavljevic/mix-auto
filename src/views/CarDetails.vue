@@ -27,7 +27,7 @@
                   <p class="car-meta">{{ car.type }} • {{ car.year }}</p>
                 </div>
                 <div class="price-tag">
-                  <span>${{ car.price.toLocaleString() }}</span>
+                  <span>{{ car.price.toLocaleString() }} €</span>
                 </div>
               </div>
 
@@ -44,7 +44,7 @@
                     </svg>
                     <div>
                       <span class="spec-label">Kilometraža</span>
-                      <span class="spec-value">{{ car.mileage }} milja</span>
+                      <span class="spec-value">{{ car.mileage }} km</span>
                     </div>
                   </div>
                   <div class="spec-item">

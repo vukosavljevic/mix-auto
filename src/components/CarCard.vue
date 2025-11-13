@@ -5,7 +5,7 @@
       <div v-if="car.status === 'sale'" class="badge sale-badge">SALE</div>
       <div v-else class="badge rent-badge">RENT</div>
       <div class="car-price">
-        <span>${{ car.price.toLocaleString() }}</span>
+        <span>{{ car.price.toLocaleString() }} €</span>
       </div>
     </div>
     <div class="car-content">
@@ -29,7 +29,7 @@
             <circle cx="20" cy="20" r="12"/>
             <circle cx="20" cy="20" r="4" fill="currentColor"/>
           </svg>
-          <span>{{ car.mileage }}K mi</span>
+          <span>{{ car.mileage }}K km</span>
         </div>
         <div class="spec">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">

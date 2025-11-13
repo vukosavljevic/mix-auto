@@ -298,7 +298,7 @@
                 <td>{{ car.id }}</td>
                 <td>{{ car.name }}</td>
                 <td>{{ car.year }}</td>
-                <td>€{{ car.price.toLocaleString() }}</td>
+                <td>{{ car.price.toLocaleString() }} €</td>
                 <td>
                   <span class="badge" :class="car.status">
                     {{ car.status === 'sale' ? 'Prodaja' : 'Najam' }}
