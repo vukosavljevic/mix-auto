@@ -9,12 +9,14 @@
       </router-view>
     </main>
     <Footer v-if="!isAdminRoute" />
+    <Analytics />
   </div>
 </template>
 
 <script setup>
 import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { Analytics } from '@vercel/analytics/vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import { useCars } from './composables/useCars'
