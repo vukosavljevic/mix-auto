@@ -4,7 +4,7 @@ Disallow: /admin
 Disallow: /coolpanel97-xyz
 
 # Sitemap
-Sitemap: https://mix-auto.com/sitemap.xml
+Sitemap: https://mix-auto.hr/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1

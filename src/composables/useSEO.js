@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router'
 import { useCars } from './useCars'
 
 const siteName = 'MIX AUTO'
-const siteUrl = 'https://mix-auto.com'
+const siteUrl = 'https://mix-auto.hr'
 const defaultDescription = 'MIX AUTO - Vaš pouzdani partner za prodaju, kupnju i uvoz kvalitetnih polovnih automobila. Posredovanje u prodaji, uvoz iz Njemačke po narudžbi i profesionalan otkup automobila. Osijek, Hrvatska.'
 const defaultImage = `${siteUrl}/hero.jpg`
 
