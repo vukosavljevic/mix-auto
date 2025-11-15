@@ -125,7 +125,7 @@
                 </div>
                 <div>
                   <h5>{{ car.agent }}</h5>
-                  <p>Prodajni Agent</p>
+                  <p>Vlasnik</p>
                 </div>
               </div>
               <a href="tel:1-800-458-5698" class="btn-contact">

@@ -21,11 +21,11 @@
             <p>
               Naša misija je pružiti vam najbolje vozilo po najpovoljnijoj cijeni, uz transparentnost 
               u svakom koraku procesa kupnje ili prodaje. Također nudimo posredovanje u prodaji automobila, 
-              uvoz vozila iz Njemačke po narudžbi te profesionalan otkup automobila.
+              uvoz vozila iz Njemačke po narudžbi te pr“ofesionalan otkup automobila.
             </p>
           </div>
           <div class="story-image">
-            <img src="/story.jpg" alt="Naša priča" />
+            <img src="/about.jpg" alt="Naša priča" />
           </div>
         </div>
       </div>
