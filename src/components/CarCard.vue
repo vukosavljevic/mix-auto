@@ -1,9 +1,7 @@
 <template>
   <div class="car-card" @click="goToDetails">
     <div class="car-image">
-      <img :src="car.image" :alt="`${car.name} ${car.year} - ${car.type} - ${car.price.toLocaleString()} € - MIX AUTO`" loading="lazy" />
-      <div v-if="car.status === 'sale'" class="badge sale-badge">SALE</div>
-      <div v-else class="badge rent-badge">RENT</div>
+      <img :src="car.image" :alt="`${car.name} ${car.year} - ${car.manufacturer} - ${car.price.toLocaleString()} € - MIX AUTO`" loading="lazy" />
       <div class="car-price">
         <span>{{ car.price.toLocaleString() }} €</span>
       </div>
@@ -18,7 +16,7 @@
         </button>
       </div>
       <div class="car-meta">
-        <span>{{ car.type }}</span>
+        <span>{{ car.manufacturer }}</span>
         <span class="dot">•</span>
         <span>{{ car.year }}</span>
       </div>
@@ -29,7 +27,7 @@
             <circle cx="20" cy="20" r="12"/>
             <circle cx="20" cy="20" r="4" fill="currentColor"/>
           </svg>
-          <span>{{ car.mileage }}K km</span>
+          <span>{{ car.mileage }} km</span>
         </div>
         <div class="spec">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">

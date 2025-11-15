@@ -3,7 +3,7 @@
     <section class="page-hero">
       <div class="container">
         <h1>{{ car.name }}</h1>
-        <p>{{ car.type }} • {{ car.year }}</p>
+        <p>{{ car.manufacturer }} • {{ car.year }}</p>
       </div>
     </section>
 
@@ -14,9 +14,36 @@
           <div class="main-content">
             <!-- Car Image -->
             <div class="car-main-image">
-              <img :src="car.image" :alt="`${car.name} ${car.year} - ${car.type} - ${car.price.toLocaleString()} € - MIX AUTO Osijek`" />
-              <div v-if="car.status === 'sale'" class="badge sale-badge">Prodaja</div>
-              <div v-else class="badge rent-badge">Najam</div>
+              <img :src="car.image" :alt="`${car.name} ${car.year} - ${car.manufacturer} - ${car.price.toLocaleString()} € - MIX AUTO Osijek`" />
+            </div>
+
+            <!-- Top Summary Cards -->
+            <div class="summary-cards">
+              <div class="summary-card">
+                <div class="summary-label">Godina proizvodnje</div>
+                <div class="summary-value">{{ car.year }}</div>
+              </div>
+              <div class="summary-card">
+                <div class="summary-label">Prijeđeni kilometri</div>
+                <div class="summary-value">{{ formatMileage(car.mileage) }}</div>
+              </div>
+              <div class="summary-card">
+                <div class="summary-label">Snaga motora</div>
+                <div class="summary-value">{{ getEnginePower(car.engine) }}</div>
+              </div>
+              <div class="summary-card">
+                <div class="summary-label">Vrsta motora</div>
+                <div class="summary-value">{{ car.fuel }}</div>
+              </div>
+              <div class="summary-card">
+                <div class="summary-label">Mjenjač</div>
+                <div class="summary-value">
+                  <svg v-if="car.transmission && (car.transmission.toLowerCase().includes('manual') || car.transmission.toLowerCase().includes('ručni') || car.transmission.toLowerCase().includes('mehanički'))" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                  </svg>
+                  <span v-else>{{ getTransmissionLabel(car.transmission) }}</span>
+                </div>
+              </div>
             </div>
 
             <!-- Car Info -->
@@ -24,80 +51,62 @@
               <div class="info-header">
                 <div>
                   <h2>{{ car.name }}</h2>
-                  <p class="car-meta">{{ car.type }} • {{ car.year }}</p>
+                  <p class="car-meta">{{ car.manufacturer }} • {{ car.year }}</p>
                 </div>
                 <div class="price-tag">
                   <span>{{ car.price.toLocaleString() }} €</span>
                 </div>
               </div>
 
-              <p class="car-description">{{ car.description }}</p>
+              <p class="car-description" v-if="car.description">{{ car.description }}</p>
 
-              <!-- Specifications -->
-              <div class="specifications">
-                <h3>Specifikacije</h3>
-                <div class="specs-grid">
-                  <div class="spec-item">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M9 11l3 3L22 4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <div>
-                      <span class="spec-label">Kilometraža</span>
-                      <span class="spec-value">{{ car.mileage }} km</span>
-                    </div>
-                  </div>
-                  <div class="spec-item">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <circle cx="12" cy="12" r="10" stroke-width="2"/>
-                      <path d="M12 6v6l4 2" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    <div>
-                      <span class="spec-label">Motor</span>
-                      <span class="spec-value">{{ car.engine }}</span>
-                    </div>
-                  </div>
-                  <div class="spec-item">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M20 16v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2m16 0v4H4v-4m16 0H4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <div>
-                      <span class="spec-label">Gorivo</span>
-                      <span class="spec-value">{{ car.fuel }}</span>
-                    </div>
-                  </div>
-                  <div class="spec-item">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <circle cx="9" cy="17" r="2" stroke-width="2"/>
-                      <circle cx="15" cy="17" r="2" stroke-width="2"/>
-                      <path d="M9 17H4v-7l3-3h10l3 3v7h-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <div>
-                      <span class="spec-label">Mjenjač</span>
-                      <span class="spec-value">{{ car.transmission }}</span>
-                    </div>
-                  </div>
-                  <div class="spec-item">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke-width="2"/>
-                      <circle cx="12" cy="10" r="3" stroke-width="2"/>
-                    </svg>
-                    <div>
-                      <span class="spec-label">Lokacija</span>
-                      <span class="spec-value">{{ car.city }}</span>
-                    </div>
-                  </div>
-                  <div class="spec-item">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <circle cx="12" cy="7" r="4" stroke-width="2"/>
-                    </svg>
-                    <div>
-                      <span class="spec-label">Agent</span>
-                      <span class="spec-value">{{ car.agent }}</span>
-                    </div>
-                  </div>
-                </div>
+              <!-- Basic Information Table -->
+              <div class="basic-information">
+                <h3>Osnovne informacije</h3>
+                <table class="info-table">
+                  <tbody>
+                    <tr>
+                      <td class="info-label">Lokacija vozila</td>
+                      <td class="info-value">{{ car.city || 'Nije navedeno' }}</td>
+                    </tr>
+                    <tr>
+                      <td class="info-label">Marka automobila</td>
+                      <td class="info-value">{{ car.manufacturer || 'Nije navedeno' }}</td>
+                    </tr>
+                    <tr>
+                      <td class="info-label">Model automobila</td>
+                      <td class="info-value">{{ car.name || 'Nije navedeno' }}</td>
+                    </tr>
+                    <tr>
+                      <td class="info-label">Godina proizvodnje</td>
+                      <td class="info-value">{{ car.year }}. godište</td>
+                    </tr>
+                    <tr>
+                      <td class="info-label">Prijeđeni kilometri</td>
+                      <td class="info-value">{{ formatMileage(car.mileage) }} km</td>
+                    </tr>
+                    <tr>
+                      <td class="info-label">Motor</td>
+                      <td class="info-value">{{ car.fuel || 'Nije navedeno' }}</td>
+                    </tr>
+                    <tr>
+                      <td class="info-label">Snaga motora</td>
+                      <td class="info-value">{{ getEnginePower(car.engine) }}</td>
+                    </tr>
+                    <tr v-if="car.engine_displacement">
+                      <td class="info-label">Radni obujam</td>
+                      <td class="info-value">{{ car.engine_displacement }} cm³</td>
+                    </tr>
+                    <tr>
+                      <td class="info-label">Mjenjač</td>
+                      <td class="info-value">{{ getTransmissionLabel(car.transmission) }}</td>
+                    </tr>
+                    <tr v-if="car.condition">
+                      <td class="info-label">Stanje</td>
+                      <td class="info-value">{{ car.condition }}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -150,6 +159,51 @@ const { cars, getCarById: getCarFromCache, loadCars } = useCars()
 
 const car = ref(null)
 const isLoading = ref(true)
+
+// Format mileage
+const formatMileage = (mileage) => {
+  if (!mileage) return '0'
+  // If it's a string with K, convert it (e.g., "270K" -> 270000)
+  if (typeof mileage === 'string' && mileage.includes('K')) {
+    const num = parseFloat(mileage.replace('K', '')) * 1000
+    return num.toLocaleString('hr-HR')
+  }
+  // If it's a number, format it with Croatian locale
+  if (typeof mileage === 'number') {
+    return mileage.toLocaleString('hr-HR')
+  }
+  // If it's already a formatted string, try to parse and reformat
+  const num = parseInt(mileage.toString().replace(/\./g, ''))
+  if (!isNaN(num)) {
+    return num.toLocaleString('hr-HR')
+  }
+  return mileage
+}
+
+// Extract engine power from engine string (e.g., "100 kW" or "2.0 L TDI")
+const getEnginePower = (engine) => {
+  if (!engine) return 'Nije navedeno'
+  // Try to find kW in the string
+  const kwMatch = engine.match(/(\d+)\s*kw/i)
+  if (kwMatch) {
+    return `${kwMatch[1]} kW`
+  }
+  // If no kW found, return the engine string as is
+  return engine
+}
+
+// Get transmission label in Croatian
+const getTransmissionLabel = (transmission) => {
+  if (!transmission) return 'Nije navedeno'
+  const trans = transmission.toLowerCase()
+  if (trans.includes('manual') || trans.includes('mehanički') || trans.includes('ručni')) {
+    return 'Ručni mjenjač'
+  }
+  if (trans.includes('automatic') || trans.includes('automatski')) {
+    return 'Automatski mjenjač'
+  }
+  return transmission
+}
 
 onMounted(async () => {
   // Učitaj sve automobile ako još nisu učitani
@@ -312,26 +366,53 @@ watch(() => route.params.id, async (newId) => {
   object-fit: cover;
 }
 
-.badge {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  padding: 0.8rem 1.5rem;
-  border-radius: 50px;
+/* Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.summary-card {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 184, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+  border-color: rgba(255, 184, 0, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.summary-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.summary-value {
+  font-size: 1.5rem;
   font-weight: 700;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: #FFB800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.sale-badge {
-  background: #FFB800;
-  color: #0a0a0a;
-}
-
-.rent-badge {
-  background: #FFB800;
-  color: #0a0a0a;
+.summary-value svg {
+  width: 24px;
+  height: 24px;
+  color: #FFB800;
 }
 
 /* Car Info */
@@ -387,9 +468,48 @@ watch(() => route.params.id, async (newId) => {
   margin-bottom: 2.5rem;
 }
 
-/* Specifications */
-.specifications {
-  margin-bottom: 2.5rem;
+/* Basic Information */
+.basic-information {
+  margin-top: 2.5rem;
+}
+
+.basic-information h3 {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.info-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.info-table td {
+  padding: 1rem 0;
+  vertical-align: top;
+}
+
+.info-label {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  width: 40%;
+  padding-right: 2rem;
+}
+
+.info-value {
+  font-size: 1rem;
+  color: white;
+  font-weight: 500;
 }
 
 .specifications h3 {
@@ -666,13 +786,42 @@ watch(() => route.params.id, async (newId) => {
     text-align: left;
   }
 
-  .specs-grid {
-    grid-template-columns: 1fr;
+  .summary-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .summary-card {
+    padding: 1rem;
+  }
+
+  .summary-value {
+    font-size: 1.2rem;
+  }
+
+  .info-table td {
+    padding: 0.8rem 0;
+  }
+
+  .info-label {
+    width: 45%;
+    padding-right: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .info-value {
+    font-size: 0.9rem;
   }
 
   .cars-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-cards {
+    grid-template-columns: 1fr;
   }
 }
 </style>

@@ -17,11 +17,6 @@
             class="search-input"
             placeholder="ID automobila ili ime vlasnika/prodavača, telefon ili email"
           />
-          <select v-model="filters.status" class="search-select">
-            <option value="">Status</option>
-            <option value="rent">Najam</option>
-            <option value="sale">Prodaja</option>
-          </select>
           <select v-model="filters.type" class="search-select">
             <option value="">Tip</option>
             <option v-for="type in carTypes" :key="type" :value="type">{{ type }}</option>
@@ -75,7 +70,6 @@ const { cars, isLoading, loadCars } = useCars()
 const searchQuery = ref('')
 
 const filters = ref({
-  status: '',
   type: '',
   manufacturer: '',
   transmission: '',
@@ -110,10 +104,6 @@ const filteredCars = computed(() => {
   }
 
   // Apply filters
-  if (filters.value.status) {
-    result = result.filter(car => car.status === filters.value.status)
-  }
-
   if (filters.value.type) {
     result = result.filter(car => car.type === filters.value.type)
   }
@@ -143,7 +133,6 @@ const filteredCars = computed(() => {
 const resetFilters = () => {
   searchQuery.value = ''
   filters.value = {
-    status: '',
     type: '',
     manufacturer: '',
     transmission: '',

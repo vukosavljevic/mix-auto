@@ -31,12 +31,14 @@ CREATE TABLE IF NOT EXISTS cars (
   type TEXT,
   mileage INTEGER DEFAULT 0,
   fuel TEXT DEFAULT 'Diesel',
-  transmission TEXT DEFAULT 'Manual',
-  city TEXT DEFAULT 'Zagreb',
+  transmission TEXT DEFAULT 'Automatic',
+  city TEXT DEFAULT 'Osijek',
   image TEXT,
   description TEXT,
   engine TEXT,
   agent TEXT,
+  engine_displacement INTEGER,
+  condition TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -159,10 +161,20 @@ After setup:
 - Verify the table structure matches the SQL above
 - Check browser console for errors
 
+## 6. Database Migration (If upgrading existing database)
+
+If you already have a database set up and need to add new fields, run the migration script:
+
+See `SUPABASE_MIGRATION.sql` for the migration script that adds:
+- `engine_displacement` (INTEGER) - Radni obujam motora u cm³
+- `condition` (TEXT) - Stanje vozila (npr. "rabljeno")
+- Updates default values for `transmission` to 'Automatic' and `city` to 'Osijek'
+
 ## Notes
 
 - The admin panel route is `/coolpanel97-xyz` (as defined in `router/index.js`)
 - All car data is stored in Supabase, not in local files
 - Images are stored in Supabase Storage and served via public URLs
 - The application uses email/password authentication for admin access
+- Default values: `transmission` = 'Automatic', `fuel` = 'Diesel', `city` = 'Osijek'
 

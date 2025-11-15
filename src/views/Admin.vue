@@ -150,30 +150,6 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label>Status *</label>
-              <select v-model="newCar.status" required>
-                <option value="">Odaberite status</option>
-                <option value="sale">Prodaja</option>
-                <option value="rent">Najam</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>Tip vozila *</label>
-              <select v-model="newCar.type" required>
-                <option value="">Odaberite tip</option>
-                <option value="Sedan">Sedan</option>
-                <option value="SUV">SUV</option>
-                <option value="Coupe">Coupe</option>
-                <option value="Sport">Sport</option>
-                <option value="Hatchback">Hatchback</option>
-                <option value="Wagon">Wagon</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
               <label>Kilometraža</label>
               <input 
                 type="number" 
@@ -183,11 +159,11 @@
             </div>
 
             <div class="form-group">
-              <label>Gorivo</label>
+              <label>Stanje</label>
               <input 
                 type="text" 
-                v-model="newCar.fuel"
-                placeholder="Diesel"
+                v-model="newCar.condition"
+                placeholder="rabljeno"
               />
             </div>
           </div>
@@ -203,11 +179,31 @@
             </div>
 
             <div class="form-group">
+              <label>Gorivo</label>
+              <input 
+                type="text" 
+                v-model="newCar.fuel"
+                placeholder="Diesel"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
               <label>Grad</label>
               <input 
                 type="text" 
                 v-model="newCar.city"
-                placeholder="Zagreb"
+                placeholder="Osijek"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Radni obujam (cm³)</label>
+              <input 
+                type="number" 
+                v-model="newCar.engine_displacement"
+                placeholder="2000"
               />
             </div>
           </div>
@@ -288,8 +284,6 @@
                 <th>Naziv</th>
                 <th>Godina</th>
                 <th>Cijena</th>
-                <th>Status</th>
-                <th>Tip</th>
                 <th>Akcije</th>
               </tr>
             </thead>
@@ -299,12 +293,6 @@
                 <td>{{ car.name }}</td>
                 <td>{{ car.year }}</td>
                 <td>{{ car.price.toLocaleString() }} €</td>
-                <td>
-                  <span class="badge" :class="car.status">
-                    {{ car.status === 'sale' ? 'Prodaja' : 'Najam' }}
-                  </span>
-                </td>
-                <td>{{ car.type }}</td>
                 <td>
                   <div class="action-buttons">
                     <button @click="handleEditCar(car)" class="btn-edit">
@@ -940,16 +928,16 @@ const newCar = ref({
   manufacturer: '',
   year: '',
   price: '',
-  status: '',
-  type: '',
   mileage: '',
-  fuel: '',
-  transmission: '',
+  fuel: 'Diesel',
+  transmission: 'Automatic',
   city: '',
   image: '',
   description: '',
   engine: '',
-  agent: ''
+  agent: '',
+  engine_displacement: '',
+  condition: ''
 })
 
 // Computed stats
@@ -1031,16 +1019,16 @@ const resetForm = () => {
     manufacturer: '',
     year: '',
     price: '',
-    status: '',
-    type: '',
     mileage: '',
-    fuel: '',
-    transmission: '',
+    fuel: 'Diesel',
+    transmission: 'Automatic',
     city: '',
     image: '',
     description: '',
     engine: '',
-    agent: ''
+    agent: '',
+    engine_displacement: '',
+    condition: ''
   }
   clearImage()
   editingCar.value = null
@@ -1071,16 +1059,17 @@ const handleAddCar = async () => {
       manufacturer: newCar.value.manufacturer,
       year: parseInt(newCar.value.year),
       price: parseInt(newCar.value.price),
-      status: newCar.value.status,
-      type: newCar.value.type,
+      status: 'sale', // Always sale
       mileage: newCar.value.mileage ? parseInt(newCar.value.mileage) : 0,
       fuel: newCar.value.fuel || 'Diesel',
-      transmission: newCar.value.transmission || 'Manual',
-      city: newCar.value.city || 'Zagreb',
+      transmission: newCar.value.transmission || 'Automatic',
+      city: newCar.value.city || 'Osijek',
       image: imageUrl || 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop&q=80',
       description: newCar.value.description || '',
       engine: newCar.value.engine || '',
-      agent: newCar.value.agent || ''
+      agent: newCar.value.agent || '',
+      engine_displacement: newCar.value.engine_displacement ? parseInt(newCar.value.engine_displacement) : null,
+      condition: newCar.value.condition || null
     }
 
     const { data, error } = await createCar(carData)
@@ -1114,16 +1103,16 @@ const handleEditCar = (car) => {
     manufacturer: car.manufacturer || '',
     year: car.year || '',
     price: car.price || '',
-    status: car.status || '',
-    type: car.type || '',
     mileage: car.mileage || '',
-    fuel: car.fuel || '',
-    transmission: car.transmission || '',
+    fuel: car.fuel || 'Diesel',
+    transmission: car.transmission || 'Automatic',
     city: car.city || '',
     image: car.image || '',
     description: car.description || '',
     engine: car.engine || '',
-    agent: car.agent || ''
+    agent: car.agent || '',
+    engine_displacement: car.engine_displacement || '',
+    condition: car.condition || ''
   }
   
   // Scroll to form
@@ -1157,16 +1146,17 @@ const handleUpdateCar = async () => {
       manufacturer: newCar.value.manufacturer,
       year: parseInt(newCar.value.year),
       price: parseInt(newCar.value.price),
-      status: newCar.value.status,
-      type: newCar.value.type,
+      status: 'sale', // Always sale
       mileage: newCar.value.mileage ? parseInt(newCar.value.mileage) : 0,
       fuel: newCar.value.fuel || 'Diesel',
-      transmission: newCar.value.transmission || 'Manual',
-      city: newCar.value.city || 'Zagreb',
+      transmission: newCar.value.transmission || 'Automatic',
+      city: newCar.value.city || 'Osijek',
       image: imageUrl,
       description: newCar.value.description || '',
       engine: newCar.value.engine || '',
-      agent: newCar.value.agent || ''
+      agent: newCar.value.agent || '',
+      engine_displacement: newCar.value.engine_displacement ? parseInt(newCar.value.engine_displacement) : null,
+      condition: newCar.value.condition || null
     }
 
     const { data, error } = await updateCar(editingCar.value, carData)
