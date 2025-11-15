@@ -217,7 +217,10 @@ const displayTestimonials = computed(() => {
 const sliderStyle = computed(() => {
   let slideWidth
   
-  if (windowWidth.value <= 1024) {
+  if (windowWidth.value <= 768) {
+    // Mobile: 100% width (full container width)
+    slideWidth = windowWidth.value
+  } else if (windowWidth.value <= 1024) {
     slideWidth = windowWidth.value * 0.9 + 32 // 90vw + gap
   } else {
     slideWidth = 400 + 32 // Item width (400px) + gap (32px) = 432px
@@ -226,7 +229,14 @@ const sliderStyle = computed(() => {
   // We want to show 3 items with the current item in the middle (position 1 of 0,1,2)
   // So we need to offset by: (currentIndex + testimonials.length - 1) * slideWidth
   // This will position currentIndex in the middle of the visible area
-  const offset = (currentIndex.value + testimonials.value.length - 1) * slideWidth
+  // For mobile, we center the single slide perfectly
+  let offset
+  if (windowWidth.value <= 768) {
+    // Center the slide: offset by the slide position
+    offset = (currentIndex.value + testimonials.value.length) * slideWidth
+  } else {
+    offset = (currentIndex.value + testimonials.value.length - 1) * slideWidth
+  }
   
   return {
     transform: `translateX(-${offset}px)`,
@@ -819,6 +829,7 @@ onUnmounted(() => {
   width: 100%;
   overflow: hidden;
   padding: 2rem 0;
+  position: relative;
 }
 
 .testimonials-grid {
@@ -953,7 +964,6 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  margin-top: 3rem;
 }
 
 .carousel-btn {
@@ -1047,12 +1057,55 @@ onUnmounted(() => {
     font-size: 2rem;
   }
 
+  .testimonials-carousel-wrapper {
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .testimonials-slider {
+    overflow: hidden;
+    padding: 1.5rem 0;
+    width: 100%;
+    position: relative;
+  }
+
+  .testimonials-grid {
+    gap: 0;
+    display: flex;
+  }
+
+  .testimonial-item { 
+    width: 95vw;
+    min-width: 99vw;
+    max-width: 95vw;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .testimonial-item.center-item {
+    opacity: 1;
+  }
+
+  .testimonial-item.center-item .testimonial-card {
+    transform: scale(1);
+  }
+
   .testimonial-card {
-    padding: 2rem 1.5rem;
+    width: calc(100vw - 4rem);
+    max-width: calc(100vw - 4rem);
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .testimonial-text {
     font-size: 0.95rem;
+    line-height: 1.7;
   }
 
   .testimonial-author img,
@@ -1066,9 +1119,47 @@ onUnmounted(() => {
     height: 40px;
   }
 
+  .carousel-controls {
+    flex-direction: row !important;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-dots {
+    order: 0 !important;
+  }
+
   .carousel-btn {
     width: 45px;
     height: 45px;
+    flex-shrink: 0;
+  }
+
+  .dot {
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.4) !important;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    flex-shrink: 0;
+    transform: scale(1) !important;
+  }
+
+  .dot:hover {
+    background: rgba(255, 87, 34, 0.6) !important;
+    transform: scale(1) !important;
+  }
+
+  .dot.active {
+    background: #FF5722 !important;
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    transform: scale(1) !important;
   }
 }
 

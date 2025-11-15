@@ -363,12 +363,6 @@ button {
 
 /* Mobile Touch Enhancements */
 @media (hover: none) and (pointer: coarse) {
-  button,
-  a {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
   .car-card,
   .news-card,
   .service-card {
