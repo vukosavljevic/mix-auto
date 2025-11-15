@@ -115,7 +115,7 @@
           <aside class="booking-sidebar">
             <!-- Agent Card -->
             <div class="agent-card">
-              <h4>Kontaktirajte Agenta</h4>
+              <h4>Kontaktirajte Vlasnika</h4>
               <div class="agent-info">
                 <div class="agent-avatar">
                   <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor">
