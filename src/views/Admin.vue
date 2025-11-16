@@ -242,6 +242,16 @@
           </div>
 
           <div class="form-group">
+            <label>Njuškalo URL</label>
+            <input 
+              type="url" 
+              v-model="newCar.njuskalo_url"
+              placeholder="https://www.njuskalo.hr/automobili/..."
+            />
+            <p class="form-help">Link na oglas na Njuškalu (opcionalno)</p>
+          </div>
+
+          <div class="form-group">
             <label>Motor</label>
             <input 
               type="text" 
@@ -1025,6 +1035,7 @@ const resetForm = () => {
     city: '',
     image: '',
     description: '',
+    njuskalo_url: '',
     engine: '',
     agent: '',
     engine_displacement: '',
@@ -1066,6 +1077,7 @@ const handleAddCar = async () => {
       city: newCar.value.city || 'Osijek',
       image: imageUrl || 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop&q=80',
       description: newCar.value.description || '',
+      njuskalo_url: newCar.value.njuskalo_url || null,
       engine: newCar.value.engine || '',
       agent: newCar.value.agent || '',
       engine_displacement: newCar.value.engine_displacement ? parseInt(newCar.value.engine_displacement) : null,
@@ -1109,6 +1121,7 @@ const handleEditCar = (car) => {
     city: car.city || '',
     image: car.image || '',
     description: car.description || '',
+    njuskalo_url: car.njuskalo_url || '',
     engine: car.engine || '',
     agent: car.agent || '',
     engine_displacement: car.engine_displacement || '',
@@ -1153,6 +1166,7 @@ const handleUpdateCar = async () => {
       city: newCar.value.city || 'Osijek',
       image: imageUrl,
       description: newCar.value.description || '',
+      njuskalo_url: newCar.value.njuskalo_url || null,
       engine: newCar.value.engine || '',
       agent: newCar.value.agent || '',
       engine_displacement: newCar.value.engine_displacement ? parseInt(newCar.value.engine_displacement) : null,

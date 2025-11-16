@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS cars (
   agent TEXT,
   engine_displacement INTEGER,
   condition TEXT,
+  njuskalo_url TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

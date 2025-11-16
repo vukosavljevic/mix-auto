@@ -20,6 +20,10 @@ UPDATE cars
 SET city = 'Osijek' 
 WHERE city IS NULL OR city = 'Zagreb';
 
+-- Add njuskalo_url column for Njuškalo links
+ALTER TABLE cars 
+ADD COLUMN IF NOT EXISTS njuskalo_url TEXT;
+
 -- Note: We removed model_year and registration_until fields from the form,
 -- but if they exist in your database, you can keep them or remove them:
 -- ALTER TABLE cars DROP COLUMN IF EXISTS model_year;

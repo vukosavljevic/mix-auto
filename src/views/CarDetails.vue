@@ -60,6 +60,16 @@
 
               <p class="car-description" v-if="car.description">{{ car.description }}</p>
 
+              <!-- Njuškalo Link -->
+              <div v-if="car.njuskalo_url" class="njuskalo-link-section">
+                <p class="njuskalo-text">
+                  Za više informacija posjetite stranicu 
+                  <a :href="car.njuskalo_url" target="_blank" rel="noopener noreferrer" class="njuskalo-link">
+                    Njuškala
+                  </a>
+                </p>
+              </div>
+
               <!-- Basic Information Table -->
               <div class="basic-information">
                 <h3>Osnovne informacije</h3>
@@ -466,6 +476,34 @@ watch(() => route.params.id, async (newId) => {
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 2.5rem;
+}
+
+.njuskalo-link-section {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 184, 0, 0.1) 0%, rgba(255, 184, 0, 0.05) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 184, 0, 0.2);
+}
+
+.njuskalo-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.njuskalo-link {
+  color: #FFB800;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.njuskalo-link:hover {
+  color: #FFA500;
+  border-bottom-color: #FFA500;
 }
 
 /* Basic Information */
