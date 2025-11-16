@@ -124,7 +124,7 @@
                   </svg>
                 </div>
                 <div>
-                  <h5>{{ car.agent }}</h5>
+                  <h5>Slađan Poklar</h5>
                   <p>Vlasnik</p>
                 </div>
               </div>
