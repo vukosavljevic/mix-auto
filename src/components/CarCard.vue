@@ -4,6 +4,7 @@
       <img :src="car.image" :alt="`${car.name} ${car.year} - ${car.manufacturer} - ${car.price.toLocaleString()} € - MIX AUTO`" loading="lazy" />
       <div class="car-price">
         <span>{{ car.price.toLocaleString() }} €</span>
+        <small class="base-price">Bazna cijena ({{ formatHrDate(basePrice.date) }}): {{ basePrice.price.toLocaleString() }} €</small>
       </div>
     </div>
     <div class="car-content">
@@ -66,7 +67,9 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { getBasePrice, formatHrDate } from '../lib/priceList'
 
 const props = defineProps({
   car: {
@@ -74,6 +77,8 @@ const props = defineProps({
     required: true
   }
 })
+
+const basePrice = computed(() => getBasePrice(props.car))
 
 const router = useRouter()
 
@@ -175,6 +180,18 @@ const formatDate = (dateString) => {
   font-size: 0.9rem;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.9);
+}
+
+.car-price .base-price {
+  display: table;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 0.35rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.65);
+  text-shadow: none;
 }
 
 .car-content {

@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/cjenici/:file",
+      "destination": "https://niioxfdnzlfqkhepilyy.supabase.co/storage/v1/object/public/car-images/cjenici/:file"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

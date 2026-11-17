@@ -28,6 +28,7 @@
               <li><router-link to="/cars">Automobili</router-link></li>
               <li><router-link to="/about">O Nama</router-link></li>
               <li><router-link to="/contact">Kontakt</router-link></li>
+              <li><router-link to="/cjenik">Cjenik</router-link></li>
             </ul>
           </div>
           <div class="footer-col">

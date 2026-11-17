@@ -33,6 +33,11 @@ const routes = [
     component: Contact
   },
   {
+    path: '/cjenik',
+    name: 'PriceList',
+    component: () => import('../views/PriceList.vue')
+  },
+  {
     path: '/coolpanel97-xyz',
     name: 'Admin',
     component: Admin

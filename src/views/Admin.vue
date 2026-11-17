@@ -208,6 +208,26 @@
             </div>
           </div>
 
+          <div class="form-row">
+            <div class="form-group">
+              <label>Bazna cijena (€)</label>
+              <input
+                type="number"
+                v-model="newCar.base_price"
+                placeholder="Prazno = trenutna cijena"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Datum bazne cijene</label>
+              <input
+                type="date"
+                v-model="newCar.base_price_date"
+              />
+            </div>
+          </div>
+          <p class="form-help">Bazna cijena je cijena na 10.9.2026., a za aute dodane kasnije cijena na dan prvog uvrštenja. Kod novog auta ostavi prazno; postavlja se automatski.</p>
+
           <div class="form-group">
             <label>Slika automobila</label>
             <input 
@@ -910,6 +930,7 @@ import { ref, computed, onMounted } from 'vue'
 import { supabase } from '../lib/supabase'
 import { createCar, updateCar, deleteCar, uploadCarImage } from '../lib/carsService'
 import { useCars } from '../composables/useCars'
+import { publishPriceList, toZagrebDate } from '../lib/priceList'
 
 // Login state
 const isLoggedIn = ref(false)
@@ -947,8 +968,21 @@ const newCar = ref({
   engine: '',
   agent: '',
   engine_displacement: '',
-  condition: ''
+  condition: '',
+  base_price: '',
+  base_price_date: ''
 })
+
+// Objavi novi cjenik (CSV) nakon svake promjene auta — zakonski rok je isti dan do 11 h.
+const refreshPriceList = async () => {
+  try {
+    await publishPriceList(supabase)
+  } catch (error) {
+    console.error('Error publishing price list:', error)
+    addCarMessage.value = 'Auto je spremljen, ali cjenik nije objavljen: ' + error.message
+    addCarMessageType.value = 'error'
+  }
+}
 
 // Computed stats
 const totalCars = computed(() => carsList.value.length)
@@ -1039,7 +1073,9 @@ const resetForm = () => {
     engine: '',
     agent: '',
     engine_displacement: '',
-    condition: ''
+    condition: '',
+    base_price: '',
+    base_price_date: ''
   }
   clearImage()
   editingCar.value = null
@@ -1081,7 +1117,9 @@ const handleAddCar = async () => {
       engine: newCar.value.engine || '',
       agent: newCar.value.agent || '',
       engine_displacement: newCar.value.engine_displacement ? parseInt(newCar.value.engine_displacement) : null,
-      condition: newCar.value.condition || null
+      condition: newCar.value.condition || null,
+      base_price: newCar.value.base_price !== '' ? parseInt(newCar.value.base_price) : parseInt(newCar.value.price),
+      base_price_date: newCar.value.base_price_date || toZagrebDate()
     }
 
     const { data, error } = await createCar(carData)
@@ -1093,6 +1131,7 @@ const handleAddCar = async () => {
       addCarMessage.value = 'Automobil je uspješno dodan!'
       addCarMessageType.value = 'success'
       await refreshCars() // Osvježi shared cache
+      await refreshPriceList()
       resetForm()
       
       setTimeout(() => {
@@ -1125,7 +1164,9 @@ const handleEditCar = (car) => {
     engine: car.engine || '',
     agent: car.agent || '',
     engine_displacement: car.engine_displacement || '',
-    condition: car.condition || ''
+    condition: car.condition || '',
+    base_price: car.base_price ?? '',
+    base_price_date: car.base_price_date || ''
   }
   
   // Scroll to form
@@ -1172,6 +1213,8 @@ const handleUpdateCar = async () => {
       engine_displacement: newCar.value.engine_displacement ? parseInt(newCar.value.engine_displacement) : null,
       condition: newCar.value.condition || null
     }
+    if (newCar.value.base_price !== '') carData.base_price = parseInt(newCar.value.base_price)
+    if (newCar.value.base_price_date) carData.base_price_date = newCar.value.base_price_date
 
     const { data, error } = await updateCar(editingCar.value, carData)
     
@@ -1182,6 +1225,7 @@ const handleUpdateCar = async () => {
       addCarMessage.value = 'Automobil je uspješno ažuriran!'
       addCarMessageType.value = 'success'
       await refreshCars() // Osvježi shared cache
+      await refreshPriceList()
       resetForm()
       
       setTimeout(() => {
@@ -1218,6 +1262,7 @@ const handleDeleteCar = async (carId) => {
     addCarMessage.value = 'Automobil je uspješno obrisan!'
     addCarMessageType.value = 'success'
     await refreshCars() // Osvježi shared cache
+    await refreshPriceList()
     
     setTimeout(() => {
       addCarMessage.value = ''

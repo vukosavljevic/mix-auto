@@ -55,6 +55,7 @@
                 </div>
                 <div class="price-tag">
                   <span>{{ car.price.toLocaleString() }} €</span>
+                  <small>Bazna cijena ({{ formatHrDate(basePrice.date) }}): {{ basePrice.price.toLocaleString() }} €</small>
                 </div>
               </div>
 
@@ -163,12 +164,14 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCars } from '../composables/useCars'
 import { getCarById as fetchCarById } from '../lib/carsService'
+import { getBasePrice, formatHrDate } from '../lib/priceList'
 
 const route = useRoute()
 const { cars, getCarById: getCarFromCache, loadCars } = useCars()
 
 const car = ref(null)
 const isLoading = ref(true)
+const basePrice = computed(() => (car.value ? getBasePrice(car.value) : { price: 0, date: '2026-09-10' }))
 
 // Format mileage
 const formatMileage = (mileage) => {
