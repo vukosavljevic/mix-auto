@@ -54,8 +54,10 @@
                   <p class="car-meta">{{ car.manufacturer }} • {{ car.year }}</p>
                 </div>
                 <div class="price-tag">
+                  <small v-if="onSale" class="sale-label"><b class="sale-badge">Akcija</b> Akcijska cijena</small>
                   <span>{{ car.price.toLocaleString() }} €</span>
-                  <small>Bazna cijena ({{ formatHrDate(basePrice.date) }}): {{ basePrice.price.toLocaleString() }} €</small>
+                  <small>Bazna cijena ({{ formatHrDate(basePrice.date) }}): <del v-if="onSale">{{ basePrice.price.toLocaleString() }} €</del><template v-else>{{ basePrice.price.toLocaleString() }} €</template></small>
+                  <small v-if="onSale" class="sale-saving">Ušteda {{ (basePrice.price - car.price).toLocaleString() }} €</small>
                 </div>
               </div>
 
@@ -164,7 +166,7 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCars } from '../composables/useCars'
 import { getCarById as fetchCarById } from '../lib/carsService'
-import { getBasePrice, formatHrDate } from '../lib/priceList'
+import { getBasePrice, formatHrDate, isOnSale } from '../lib/priceList'
 
 const route = useRoute()
 const { cars, getCarById: getCarFromCache, loadCars } = useCars()
@@ -172,6 +174,7 @@ const { cars, getCarById: getCarFromCache, loadCars } = useCars()
 const car = ref(null)
 const isLoading = ref(true)
 const basePrice = computed(() => (car.value ? getBasePrice(car.value) : { price: 0, date: '2026-09-10' }))
+const onSale = computed(() => (car.value ? isOnSale(car.value) : false))
 
 // Format mileage
 const formatMileage = (mileage) => {
@@ -472,6 +475,33 @@ watch(() => route.params.id, async (newId) => {
   color: rgba(255, 255, 255, 0.6);
   display: block;
   margin-top: 0.3rem;
+}
+
+.price-tag .sale-label {
+  margin: 0 0 0.3rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.price-tag .sale-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #d32f2f;
+  padding: 0.1rem 0.5rem;
+  border-radius: 6px;
+  margin-right: 0.35rem;
+}
+
+.price-tag .sale-saving {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.price-tag del {
+  text-decoration-thickness: 2px;
 }
 
 .car-description {

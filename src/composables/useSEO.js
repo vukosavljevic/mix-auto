@@ -1,7 +1,7 @@
 import { onMounted, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCars } from './useCars'
-import { getBasePrice, formatHrDate } from '../lib/priceList'
+import { getBasePrice, formatHrDate, isOnSale } from '../lib/priceList'
 
 const siteName = 'MIX AUTO'
 const siteUrl = 'https://mix-auto.hr'
@@ -141,7 +141,7 @@ export function useSEO() {
       const car = cars.value?.find(c => c.id === parseInt(carId))
       if (car) {
         const carTitle = `${car.name} ${car.year} - ${car.price.toLocaleString()} € | MIX AUTO`
-        const carDescription = `${car.name} ${car.year} - ${car.type} - ${car.mileage}K km - ${car.engine} - ${car.fuel} - ${car.transmission}. Cijena: ${car.price.toLocaleString()} €. Bazna cijena (${formatHrDate(getBasePrice(car).date)}): ${getBasePrice(car).price.toLocaleString()} €. ${car.description || 'Kvalitetan polovni automobil na prodaju.'}`
+        const carDescription = `${car.name} ${car.year} - ${car.type} - ${car.mileage}K km - ${car.engine} - ${car.fuel} - ${car.transmission}. ${isOnSale(car) ? 'Akcijska cijena' : 'Cijena'}: ${car.price.toLocaleString()} €. Bazna cijena (${formatHrDate(getBasePrice(car).date)}): ${getBasePrice(car).price.toLocaleString()} €. ${car.description || 'Kvalitetan polovni automobil na prodaju.'}`
         
         updateMetaTags({
           title: carTitle,

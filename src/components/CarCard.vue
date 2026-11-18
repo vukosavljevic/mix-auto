@@ -3,8 +3,9 @@
     <div class="car-image">
       <img :src="car.image" :alt="`${car.name} ${car.year} - ${car.manufacturer} - ${car.price.toLocaleString()} € - MIX AUTO`" loading="lazy" />
       <div class="car-price">
+        <small v-if="onSale" class="sale-badge">Akcija</small>
         <span>{{ car.price.toLocaleString() }} €</span>
-        <small class="base-price">Bazna cijena ({{ formatHrDate(basePrice.date) }}): {{ basePrice.price.toLocaleString() }} €</small>
+        <small class="base-price">Bazna cijena ({{ formatHrDate(basePrice.date) }}): <del v-if="onSale">{{ basePrice.price.toLocaleString() }} €</del><template v-else>{{ basePrice.price.toLocaleString() }} €</template></small>
       </div>
     </div>
     <div class="car-content">
@@ -69,7 +70,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { getBasePrice, formatHrDate } from '../lib/priceList'
+import { getBasePrice, formatHrDate, isOnSale } from '../lib/priceList'
 
 const props = defineProps({
   car: {
@@ -79,6 +80,7 @@ const props = defineProps({
 })
 
 const basePrice = computed(() => getBasePrice(props.car))
+const onSale = computed(() => isOnSale(props.car))
 
 const router = useRouter()
 
@@ -192,6 +194,24 @@ const formatDate = (dateString) => {
   border-radius: 6px;
   background: rgba(0, 0, 0, 0.65);
   text-shadow: none;
+}
+
+.car-price .sale-badge {
+  display: table;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #d32f2f;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  margin-bottom: 0.35rem;
+  text-shadow: none;
+}
+
+.car-price .base-price del {
+  text-decoration-thickness: 2px;
 }
 
 .car-content {

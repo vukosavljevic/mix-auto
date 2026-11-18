@@ -37,7 +37,10 @@
               <tr v-for="car in sortedCars" :key="car.id">
                 <td><router-link :to="`/car/${car.id}`">{{ car.name }}</router-link></td>
                 <td>{{ car.id }}</td>
-                <td class="num">{{ car.price.toLocaleString() }} €</td>
+                <td class="num">
+                  <span v-if="isOnSale(car)" class="sale-badge">Akcija</span>
+                  {{ car.price.toLocaleString() }} €
+                </td>
                 <td class="num">
                   {{ getBasePrice(car).price.toLocaleString() }} €
                   <small>({{ formatHrDate(getBasePrice(car).date) }})</small>
@@ -64,7 +67,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { supabase } from '../lib/supabase'
 import { useCars } from '../composables/useCars'
-import { listPriceLists, getBasePrice, formatHrDate, PRICE_LIST_FOLDER } from '../lib/priceList'
+import { listPriceLists, getBasePrice, formatHrDate, isOnSale, PRICE_LIST_FOLDER } from '../lib/priceList'
 
 const { cars, loadCars } = useCars()
 const files = ref([])
@@ -219,6 +222,20 @@ td a:hover {
 td small {
   display: block;
   color: rgba(255, 255, 255, 0.5);
+}
+
+.sale-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #d32f2f;
+  padding: 0.1rem 0.4rem;
+  border-radius: 5px;
+  margin-right: 0.35rem;
+  vertical-align: middle;
 }
 
 @media (max-width: 768px) {

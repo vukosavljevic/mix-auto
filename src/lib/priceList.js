@@ -16,6 +16,11 @@ export function getBasePrice(car) {
   return { price: car.base_price ?? car.price, date: added > BASE_REFERENCE_DATE ? added : BASE_REFERENCE_DATE }
 }
 
+/** Akcija: trenutna cijena je niža od bazne (sidrene) cijene. */
+export function isOnSale(car) {
+  return Number(car.price) < Number(getBasePrice(car).price)
+}
+
 /** "2026-09-10" -> "10. 9. 2026." */
 export function formatHrDate(isoDate) {
   const [y, m, d] = isoDate.slice(0, 10).split('-').map(Number)
@@ -56,7 +61,7 @@ export function buildPriceListCsv(cars) {
       const base = getBasePrice(car)
       return [
         car.name, car.id, car.manufacturer, '', 'kom',
-        money(car.price), 'NE', '', '', '', money(base.price), formatHrDate(base.date),
+        money(car.price), isOnSale(car) ? 'DA' : 'NE', '', '', '', money(base.price), formatHrDate(base.date),
       ]
     })
   return [header, ...rows].map((r) => r.map(csvCell).join(';')).join('\r\n') + '\r\n'
