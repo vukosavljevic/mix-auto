@@ -3,22 +3,31 @@
 //   node scripts/sync-njuskalo.mjs            -> dry run: shows what would be added / updated / deleted
 //   node scripts/sync-njuskalo.mjs --apply    -> logs in as admin and applies the changes
 //
-// --apply needs ADMIN_EMAIL and ADMIN_PASSWORD in the environment (the same login as the admin panel).
-// Listing data comes from scripts/njuskalo-data.json (scraped from https://www.njuskalo.hr/trgovina/mixauto).
+// --apply needs ADMIN_EMAIL and ADMIN_PASSWORD (the same login as the admin panel), either in the environment
+// or in .env.local (gitignored). Listing data comes from scripts/njuskalo-data.json
+// (scraped from https://www.njuskalo.hr/trgovina/mixauto).
+//
+// Safety: the run stops if the scrape looks broken (no listings, missing fields) or if it would delete more
+// than half of the cars on the site. Pass --force to apply anyway.
 
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { createClient } from '@supabase/supabase-js'
 import { publishPriceList, toZagrebDate } from '../src/lib/priceList.js'
 
 const root = new URL('..', import.meta.url)
-const env = Object.fromEntries(
-  readFileSync(new URL('.env', root), 'utf8')
-    .split('\n')
-    .filter((l) => l.includes('=') && !l.trim().startsWith('#'))
-    .map((l) => [l.slice(0, l.indexOf('=')).trim(), l.slice(l.indexOf('=') + 1).trim()])
-)
+const readEnv = (name) =>
+  existsSync(new URL(name, root))
+    ? Object.fromEntries(
+        readFileSync(new URL(name, root), 'utf8')
+          .split('\n')
+          .filter((l) => l.includes('=') && !l.trim().startsWith('#'))
+          .map((l) => [l.slice(0, l.indexOf('=')).trim(), l.slice(l.indexOf('=') + 1).trim().replace(/^(['"])(.*)\1$/, '$2')])
+      )
+    : {}
+const env = { ...readEnv('.env'), ...readEnv('.env.local'), ...process.env }
 const supabase = createClient(env.VITE_SUPABASE_URL, env.VITE_SUPABASE_ANON_KEY)
 const apply = process.argv.includes('--apply')
+const force = process.argv.includes('--force')
 const listings = JSON.parse(readFileSync(new URL('scripts/njuskalo-data.json', root), 'utf8'))
 
 // "18.999,99 €" -> 18999 (column is INTEGER; keep the .99 look by flooring)
@@ -86,18 +95,34 @@ for (const l of toAdd) console.log(`  + ${l.name} | ${l.year} | ${parsePrice(l.p
 console.log(`\nOBRIŠI (${toDelete.length}):`)
 for (const c of toDelete) console.log(`  - #${c.id} ${c.name} | ${c.year} | ${c.price} €`)
 
+// Sanity checks so a broken or blocked scrape never wipes the site.
+const required = ['id', 'url', 'name', 'price', 'manufacturer', 'year', 'mileage', 'image']
+const broken = listings.filter((l) => required.some((k) => l[k] === undefined || l[k] === null || l[k] === '') || !(parsePrice(l.price) > 0))
+const problems = []
+if (!Array.isArray(listings) || listings.length === 0) problems.push('scrape nema nijednog oglasa')
+if (broken.length) problems.push(`${broken.length} oglasa nema sva polja: ${broken.map((l) => l.url || l.name).join(', ')}`)
+if (existing.length && toDelete.length > existing.length / 2)
+  problems.push(`brisalo bi ${toDelete.length} od ${existing.length} auta (više od pola)`)
+if (problems.length) {
+  console.log(`\n⚠ Sigurnosna provjera:\n  - ${problems.join('\n  - ')}`)
+  if (!force) {
+    console.log('Ništa nije promijenjeno. Provjeri scrape ili pokreni s --force ako je ovo stvarno točno.')
+    process.exit(2)
+  }
+}
+
 if (!apply) {
   console.log('\nDry run — ništa nije promijenjeno. Pokreni s --apply za primjenu.')
   process.exit(0)
 }
 
-if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
-  console.error('\nNedostaje ADMIN_EMAIL / ADMIN_PASSWORD u okruženju.')
+if (!env.ADMIN_EMAIL || !env.ADMIN_PASSWORD) {
+  console.error('\nNedostaje ADMIN_EMAIL / ADMIN_PASSWORD (u okruženju ili u .env.local).')
   process.exit(1)
 }
 const { error: authError } = await supabase.auth.signInWithPassword({
-  email: process.env.ADMIN_EMAIL,
-  password: process.env.ADMIN_PASSWORD,
+  email: env.ADMIN_EMAIL,
+  password: env.ADMIN_PASSWORD,
 })
 if (authError) {
   console.error('Prijava nije uspjela:', authError.message)
