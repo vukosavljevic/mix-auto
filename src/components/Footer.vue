@@ -46,7 +46,14 @@
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <p>&copy; 2025 MIX-AUTO. Sva prava pridržana.</p>
+        <nav class="legal-links" aria-label="Pravne informacije">
+          <router-link to="/impressum">Impressum</router-link>
+          <router-link to="/politika-privatnosti">Politika privatnosti</router-link>
+          <router-link to="/uvjeti-koristenja">Uvjeti korištenja</router-link>
+          <router-link to="/kolacici">Kolačići</router-link>
+          <router-link to="/cjenik">Cjenik</router-link>
+        </nav>
+        <p>&copy; {{ new Date().getFullYear() }} MIX AUTO j.d.o.o. Sva prava pridržana.</p>
       </div>
     </div>
   </footer>
@@ -169,6 +176,24 @@
 .footer-bottom p {
   color: #999;
   margin: 0;
+}
+
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.legal-links a {
+  color: #bbb;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.legal-links a:hover {
+  color: #FFB800;
 }
 
 .container {

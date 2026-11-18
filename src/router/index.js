@@ -38,6 +38,26 @@ const routes = [
     component: () => import('../views/PriceList.vue')
   },
   {
+    path: '/impressum',
+    name: 'Impressum',
+    component: () => import('../views/Impressum.vue')
+  },
+  {
+    path: '/politika-privatnosti',
+    name: 'PrivacyPolicy',
+    component: () => import('../views/PrivacyPolicy.vue')
+  },
+  {
+    path: '/uvjeti-koristenja',
+    name: 'TermsOfUse',
+    component: () => import('../views/TermsOfUse.vue')
+  },
+  {
+    path: '/kolacici',
+    name: 'Cookies',
+    component: () => import('../views/Cookies.vue')
+  },
+  {
     path: '/coolpanel97-xyz',
     name: 'Admin',
     component: Admin
